@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+/*         let soma = 0
+let salario = 0
+for (let i=0; i < 10; i++) {
+    salario = parseFloat(prompt("Informe o salário: "));
+    soma = soma + salario;
+}
+alert(soma); */
+
+//0-100 
+//receber as notas dos alunos até que a soma das notas seja maior que 100
+
+
+let somaNotas = 0;
+while(somaNotas <= 100) {
+    nota = 20;
+
+    somaNotas = somaNotas + nota;
+    alert("while " + somaNotas);
+}
+
+
+
+somaNotas = 0;
+do {
+    nota = 20;
+
+    somaNotas = somaNotas + nota;
+    alert("dowhile " + somaNotas);
+
+} while (somaNotas <= 100)
+
+//apenas alunos que tiverem nota menor que 100 serão acumulados
+
+somaNotas = 0;
+nota = 100;
+
+while(nota < 100) {
+    nota = 100;
+
+    somaNotas = somaNotas + nota;
+    
+    nota = nota + 35;
+}
+
+
+
+somaNotas = 0;
+do {
+    nota = 100;
+
+    somaNotas = somaNotas + nota;
+
+} while (nota < 100)
+
+
+
+    </script>
+    
+</body>
+</html>

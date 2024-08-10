@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        //ler 5 salários de um vetor
+        //exibir o maior salário
+
+        let salarios = [150, 170, 200, 100, 50, 180, 500];
+        
+        let maiorSalario = 0;
+        let somaSalario = 0;
+
+        for(let i=0; i< salarios.length; i++) {
+            if (salarios[i] > maiorSalario) {
+                maiorSalario = salarios[i]
+            }
+
+            somaSalario = somaSalario + salarios[i];
+        }
+
+        alert("O maior salário é " + maiorSalario);
+        alert("A soma dos salários é " + somaSalario);
+    </script>
+    
+</body>
+</html>
