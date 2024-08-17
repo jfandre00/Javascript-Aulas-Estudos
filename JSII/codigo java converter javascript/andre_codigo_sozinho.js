@@ -1,6 +1,7 @@
 let alunos = [];
 let notas = [];
 let quantidadeAlunos = 0;  
+const qtdeMaximaPedida = 5; //Se decidirmos trabalhar com mais alunos é só mudar aqui.
 let opcao = null;
 
 do {
@@ -8,22 +9,22 @@ do {
 
     switch (opcao) {
         case 1:
-            if (quantidadeAlunos == 5) {
+            if (quantidadeAlunos == qtdeMaximaPedida) {
                 alert("Quantidade Máxima de Alunos Atingida!");
                 break;
             }
-            while (quantidadeAlunos < 5) {
+            while (quantidadeAlunos < qtdeMaximaPedida) {
                 alunos[quantidadeAlunos] = prompt("Digite o nome do aluno " + (quantidadeAlunos + 1) + ": ");
                 quantidadeAlunos++;
                 let resposta = prompt("Deseja cadastrar outro aluno? (s/n): ");
-                if (resposta.toLowerCase() === 's' && quantidadeAlunos == 5) {
+                if (resposta.toLowerCase() === 's' && quantidadeAlunos == qtdeMaximaPedida) {
                     alert("Quantidade Máxima de Alunos Atingida!");
                 }
                 if (resposta.toLowerCase() === 'n') {
                         break;
                     }
             }
-            if (quantidadeAlunos > 5) {
+            if (quantidadeAlunos > qtdeMaximaPedida) {
                 alert("Capacidade máxima de alunos atingida!");
             }
             break;
@@ -36,10 +37,11 @@ do {
 
         case 3:
             let lista_exibir = [];
+            const n = 1;
             for (let i = 0; i < quantidadeAlunos; i++) {
-                lista_exibir.push("Aluno: " + alunos[i] + " - Nota: " + notas[i] + "\n");
+                lista_exibir.push("Aluno " + (i+n) + ": " + alunos[i] + " - Nota: " + notas[i]);
             }
-            alert("Lista de alunos e suas notas:\n" + lista_exibir);
+            alert("Lista de alunos e suas notas:\n" + lista_exibir.join("\n"));
             break;
 
         case 4:
