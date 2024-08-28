@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro de Tarefas</title>
+
+    <link rel="stylesheet" href="style_tarefa.css">
+</head>
+
+<body>
+    <h1>Cadastro de Tarefas</h1>
+    <p>Quantas tarefas deseja incluir: <input id="insercao" type="number"></p>
+    <div id="tarefas-container"></div>
+
+    <div id="aparecer"><button onclick="descricao()">Adicionar Tarefas</button><pre>     </pre><span id="mensagem-container"></span></div>
+
+    <hr>
+    <p>Exibir Tarefas</p>
+    <button onclick="exibir()">Exibir Tarefas Cadastradas</button>
+    <div id="exibir-tarefas"></div>
+    <script src="tarefa.js"></script>
+</body>
+
+</html>

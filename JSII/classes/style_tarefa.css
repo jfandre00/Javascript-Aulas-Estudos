@@ -1,0 +1,44 @@
+html {
+    background-color: rgba(0, 0, 0, 0.1);
+    font-family: sans-serif;
+}
+
+h1 {
+    text-align: center;
+    color: rgb(225, 53, 213);
+    font-weight: bolder;
+    text-decoration: underline;
+}
+
+p {
+    font-size: 1.2rem;
+}
+
+button {
+    width: 150px;
+    height: 50px;
+    font: 1em sans-serif;
+    box-shadow: 2px 2px 3px black;
+    background-color: rgba(225, 53, 213, 0.598);
+}
+
+#insercao {
+    width: 50px;
+    height: 30px;
+    font-size: 1rem;
+    background-color: rgba(225, 53, 214, 0.397);
+    box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.324);
+}
+
+#mensagem-container {
+    text-align: center;
+    color:green;
+    font-weight: bolder;
+    font-size: 4rem;
+
+}
+
+#aparecer {
+    display: flex;
+    justify-content: flex-start;
+}
