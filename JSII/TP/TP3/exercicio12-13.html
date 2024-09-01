@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TP3 JavaScript II - Questões em grupo</title>
+    <link rel="stylesheet" href="exercicio12-13.css">
+</head>
+<body>
+    <h1>Sistema de Controle de Estoque Lojas Toronto</h1>
+    <div id="container">
+        <div id="esquerda" class="contorno">
+            <p>Nome:</p>
+            <input type="text" name="nome" id="nome">
+            <br>
+            <p>Preço:</p>
+            <input type="number" name="preco" id="preco">
+            <br>
+            <p>Quantidade:</p>
+            <input type="number" name="quantidade" id="quantidade">
+            <br>
+            <br>
+            <button type="button" onclick="adicionarProduto()">Adicionar Produto ao Estoque</button>
+        </div>
+        <div id="meio1" class="contorno">
+            <p>Produto:</p>
+            <input type="text" name="produto" id="produto">
+            <br>
+            <p>Quantidade:</p>
+            <input type="number" name="quantidadeAtualizar" id="quantidadeAtualizar">
+            <br>
+            <br>
+            <button type="button" onclick="atualizarProduto()">Atualizar Produto</button>
+        </div>
+        <div id="meio2" class="contorno">
+            <p>Produto:</p>
+            <input type="text" name="produtoRemover" id="produtoRemover">
+            <br>
+            <br>
+            <button type="button" onclick="removerProduto()">Remover Produto</button>
+        </div>
+        <div id="direita">
+            <div class="contorno">
+                <p>Calcular Valor Total</p>
+                <button type="button" onclick="calcularValorTotal()">Calcular</button>
+            </div>
+            <div class="contorno">
+                <p>Relatório de Estoque</p>
+                <button type="button" onclick="relatorioEstoque()">Gerar Relatório</button>
+            </div>
+
+
+        </div>
+        <div>
+
+        </div>
+    </div>
+    <!-- q: COMO DEIXAR UMA DIV escondida NA TELA E APARECER QUANDO CLICAR NO BOTÃO? -->
+    
+    <div id="resultado" class="contorno">
+        <p>Resultado:</p>
+        <p id="relatorio"></p>
+    <script src="exercicio12-13.js"></script>
+</body>
+</html>

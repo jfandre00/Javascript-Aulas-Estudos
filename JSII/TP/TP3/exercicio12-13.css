@@ -1,0 +1,21 @@
+h1 {
+    text-align: center;
+    text-decoration: underline;
+    text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.42);
+}
+
+div#container {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+div.contorno {
+    border: 2px solid black;
+    padding: 10px;
+    margin: 10px;
+}
+
+#resultado {
+    display: none;
+}
+
