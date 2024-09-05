@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TP03 - Exercício 15</title>
+</head>
+<body>
+    <h1>Exercício 15</h1>
+
+    <input type="number" name="ident" id="ident" value="001">
+    <input type="text" name="descricao" id="descricao" value="Escovar o dente">
+    <select name="concluida" id="concluida">
+        <option value="1" selected>Sim</option>
+        <option value="0">Não</option>
+    </select>    
+    <select name="prioridade" id="prioridade">
+        <option value="0">Baixa</option>
+        <option value="1" selected>Média</option>
+        <option value="2">Alta</option>
+    </select>
+    <button onclick="adicionarTarefa()">Adicionar Tarefa</button>
+    <br><br>
+    <!-- vamos criar um forma de recuperar as informações que estão armazenadas, permitindo editar a descricao e prioridade de uma tarefa  -->
+    <input type="number" name="identEdit" id="identEdit" value="001">
+    <input type="text" name="descricaoEdit" id="descricaoEdit" value="Escovar o dente">
+    <select name="prioridadeEdit" id="prioridadeEdit">
+        <option value="0">Baixa</option>
+        <option value="1" selected>Média</option>
+        <option value="2">Alta</option>
+    </select>
+    <button onclick="editarTarefa()">Editar Tarefa</button>
+    <br><br>
+    <button onclick="listarTarefas()">Listar Tarefas</button>
+    <br><br>        
+    <div id="tarefas"></div>
+    <br><br>
+    <!--<button onclick="listarTarefasConcluidas()">Listar Tarefas Concluídas</button>
+    <br><br>
+    <div id="tarefasConcluidas"></div>
+    <br><br> -->
+
+
+    <script src="exercicio15.js"></script>
+</body>
+</html>
