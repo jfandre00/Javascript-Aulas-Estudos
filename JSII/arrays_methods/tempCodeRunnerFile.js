@@ -1,0 +1,1 @@
+return primeiroNome[0].toUpperCase() + segundoNome[0].toUpperCase();

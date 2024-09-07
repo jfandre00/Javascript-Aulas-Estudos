@@ -1,3 +1,7 @@
+//criar um objeto e devolver o retorno de uma unica vez
+//tratar o erro de tamanho de array
+//não é bom usar length pois os vetores podem ter tamanhos diferentes
+
 function soma(a, b) {
     return a + b;
 }
