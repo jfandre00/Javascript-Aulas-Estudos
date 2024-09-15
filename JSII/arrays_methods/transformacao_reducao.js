@@ -38,4 +38,31 @@ console.log(calcularValorTotal(osProdutosComprados));
 
 //Difícil
 
+const frases = [
+    "meu nome é elberth", 
+    "elberth é um cara estranho",
+    "ele não é estranho, estranho é o nome",
+    "meu melhor amigo é o zeca"
+];
+
+const contadorDePalavras = (vetorFrases) => 
+    vetorFrases.reduce((contador, frase) => {
+        // Remover pontuação da frase
+        const fraseSemPontuacao = frase.replace(/[.,]/g, '');
+
+        // Dividir a frase em palavras
+        const palavras = fraseSemPontuacao.split(" ");
+        
+        palavras.forEach(palavra => {
+            //contador[palavra] = contador[palavra] ? contador[palavra] + 1 : 1;
+            contador[palavra] = (contador[palavra] || 0) + 1;	
+        });
+
+        return contador;
+    }, {});
+
+
+
+
+console.log(contadorDePalavras(frases));
 
