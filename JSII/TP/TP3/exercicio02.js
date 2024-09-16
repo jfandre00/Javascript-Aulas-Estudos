@@ -30,3 +30,7 @@ function calcularTudo(a, b) {
 
 console.log(divisao(10, 2));
 console.log(calcularTudo(10,2));
+
+//como mostar esse objeto no alert?
+//alert(calcularTudo(10,2)); // não funciona
+//alert(JSON.stringify(calcularTudo(10,2))); // funciona
