@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Concessionária</title>
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        table, th, td {
+            border: 1px solid black;
+        }
+        th, td {
+            padding: 10px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        #controls {
+            margin: 20px 0;
+        }
+        #controls button {
+            margin-right: 10px;
+        }
+        #carrosAdicionados {
+            margin: 10px 0;
+        }
+    </style>
+</head>
+<body>
+    <h1>Vendas de Veículos</h1>
+
+    <!-- Formulário para inserir os dados -->
+    <div id="controls">
+        <button onclick="coletarDadosVenda()">Adicionar Venda</button>
+        <button onclick="alterarStatusVenda()">Alterar Status da Venda</button>
+        <button onclick="excluirCarro()">Excluir Carro da Venda</button>
+        <button onclick="exibirTotalizadores()">Exibir Totalizadores</button>
+        <button onclick="exibirFiltro()">Exibir Vendas com mais de 2 carros</button>
+        <button onclick="exibirInconsistencia()">Verificar Inconsistências</button>
+    </div>
+
+    <!-- Formulário para adicionar carros à venda -->
+    <div id="formAdicionarCarro" style="display: none;">
+        <h3>Adicionar Carros à Venda</h3>
+        
+        <!-- Seleção de vendedor -->
+        <label for="selecionarVendedor">Selecione o vendedor:</label>
+        <select id="selecionarVendedor"></select>
+
+        <label for="selecionarCarro">Selecione o carro:</label>
+        <select id="selecionarCarro">
+            <!-- As opções de carros serão inseridas aqui via JavaScript -->
+        </select>
+        <button onclick="adicionarCarro()">Adicionar Carro</button>
+        <div id="carrosAdicionados">
+            <h4>Carros adicionados:</h4>
+            <ul id="listaCarros"></ul>
+        </div>
+        <button onclick="finalizarVenda()">Finalizar Venda</button>
+    </div>
+
+    <!-- Tabela para exibir as vendas -->
+    <div id="vendasContainer">
+        <table id="vendasTabela">
+            <thead>
+                <tr>
+                    <th>Código da Venda</th>
+                    <th>Vendedor</th>
+                    <th>E-mail</th>
+                    <th>Status</th>
+                    <th>Carros</th>
+                    <th>Total (R$)</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- As vendas serão inseridas aqui via JavaScript -->
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Elemento para exibir os totalizadores e filtros -->
+    <div id="resultados">
+        <!-- Informações serão inseridas aqui -->
+    </div>
+
+    <script src="vendas.js"></script>
+</body>
+</html>
