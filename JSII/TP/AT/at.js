@@ -1,7 +1,7 @@
-let codigoVenda = 0;
+let codigoPedido = 0;
 let indexCarro = 0;
 
-let vendedores = [
+let concessionarias = [
     "João MultiMarcas",
     "Maria Veículos",
     "José Automóveis",
@@ -14,10 +14,10 @@ let vendedores = [
     "Patrícia Motors",
 ];
 
-function gerarEmail(vendedor) {
-    //remover o espaço no meio da string
+function gerarEmail(concessionaria) {
+    //remover os espaços (se existirem) no meio da string
 
-  return `${vendedor.toLowerCase().replace(" ", ".")}@concessionaria.com`;
+  return `${concessionaria.toLowerCase().replace(/\s+/g, ".")}@concessionaria.com`;
 }
 
 let carros = [
@@ -31,13 +31,21 @@ let carros = [
   { codigo: 108, modelo: "Tucson", preco: 110000 },
   { codigo: 109, modelo: "Sportage", preco: 120000 },
   { codigo: 110, modelo: "Altima", preco: 95000 },
+  { codigo: 111, modelo: "Fusca", preco: 50000 },
+  { codigo: 112, modelo: "Gol", preco: 60000 },
+  { codigo: 113, modelo: "Palio", preco: 40000 },
+  { codigo: 114, modelo: "Uno", preco: 30000 },
+  { codigo: 115, modelo: "Onix", preco: 70000 },
+  { codigo: 116, modelo: "HB20", preco: 65000 },
+  { codigo: 117, modelo: "Creta", preco: 75000 },
+  { codigo: 118, modelo: "Compass", preco: 85000 },
+  { codigo: 119, modelo: "Renegade", preco: 95000 },
+  { codigo: 120, modelo: "T-Cross", preco: 80000 },
 ];
 
-//^^^^^^^^^^^^^^^^^^^^^^^^^^^//
-//////// MASSA DE DADOS////////
-///////////////////////////////
+//---------- MASSA DE DADOS ----------
 
-const vendas = [];
+const pedidos = [];
 
 class Carro {
   constructor(codigo, modelo, preco) {
@@ -47,11 +55,17 @@ class Carro {
   }
 
   toString() {
-    return `${this.codigo} - ${this.modelo} - R$${this.preco.toFixed(2)}`;
+    // Formatando o preço com a API de formatação de número
+    const precoFormatado = new Intl.NumberFormat('pt-BR', {
+      style: 'currency',
+      currency: 'BRL',
+    }).format(this.preco);
+    
+    return `${this.codigo} - ${this.modelo} - ${precoFormatado}`;
   }
 }
 
-class Vendedor {
+class Concessionaria {
   constructor(nome, email) {
     this.nome = nome;
     this.email = email;
@@ -62,10 +76,10 @@ class Vendedor {
   }
 }
 
-class Venda {
-  constructor(codigo, vendedor) {
+class Pedido {
+  constructor(codigo, concessionaria) {
     this.codigo = codigo;
-    this.vendedor = vendedor;
+    this.concessionaria = concessionaria;
     this.carros = [];
     this.status = "Inicial";
   }
@@ -73,11 +87,11 @@ class Venda {
   toString() {
     let listaCarros = this.carros.map(carro => carro.toString()).join("\n");
 
-    return `[${this.status}] Venda ${this.codigo} - Vendedor ${this.vendedor.toString()}\n Carros:\n ${listaCarros}`;
+    return `[${this.status}] Pedido ${this.codigo} - Concessionaria ${this.concessionaria.toString()}\n Carros:\n ${listaCarros}`;
   }
 
   incluir() {
-    vendas.push(this);
+    pedidos.push(this);
   }
 
   alterarStatus(novoStatus) {
@@ -101,29 +115,29 @@ class Venda {
   }
 }
 
-function exibirVendas() {
+function exibirPedidos() {
   let txt = "";
 
-  vendas.forEach((venda) => {
-    txt += venda.toString() + "\n\n";
+  pedidos.forEach((pedido) => {
+    txt += pedido.toString() + "\n\n";
   });
 
   console.log(txt);
 }
 
-function coletarDadosVenda() {
-  const nome = prompt("Nome do vendedor:", vendedores[codigoVenda]);
-  const email = prompt("E-mail do vendedor:", gerarEmail(nome));
-  const codigo = prompt("Código da venda:", ++codigoVenda);
+function coletarDadosPedido() {
+  const nome = prompt("Nome da concessionaria:", concessionarias[codigoPedido]);
+  const email = prompt("E-mail da concessionaria:", gerarEmail(nome));
+  const codigo = prompt("Código do pedido:", ++codigoPedido);
 
-  const vendedor = new Vendedor(nome, email);
+  const concessionaria = new Concessionaria(nome, email);
 
-  const venda = new Venda(codigo, vendedor);
+  const pedido = new Pedido(codigo, concessionaria);
 
-  coletarDadosCarro(venda);
+  coletarDadosCarro(pedido);
 }
 
-function coletarDadosCarro(oVenda) {
+function coletarDadosCarro(oPedido) {
   do {
     const codigo = prompt("Código do carro:", carros[indexCarro].codigo);
     const modelo = prompt("Modelo do carro:", carros[indexCarro].modelo);
@@ -135,97 +149,110 @@ function coletarDadosCarro(oVenda) {
 
     const carro = new Carro(codigo, modelo, preco);
 
-    oVenda.addCarro(carro);
+    oPedido.addCarro(carro);
   } while (confirm("Deseja incluir um novo carro?"));
 
-  oVenda.incluir();
+  oPedido.incluir();
 
-  if (confirm("Deseja incluir uma nova venda?")) {
-    coletarDadosVenda();
+  if (confirm("Deseja incluir um novo pedido?")) {
+    coletarDadosPedido();
   } else {
-    exibirVendas();
+    exibirPedidos();
   }
 }
 
-function buscarVendaPorCodigo(codigoVenda) {
-  return vendas.find((venda) => venda.codigo === codigoVenda);
+function buscarPedidoPorCodigo(codigoPedido) {
+  const pedido = pedidos.find((pedido) => pedido.codigo === codigoPedido);
+  if (!pedido) {
+    console.log("Pedido não encontrada.");
+    return null;
+  }
+  return pedido;
 }
 
 function excluirCarro() {
-  const vendaParaExcluirCarro = buscarVendaPorCodigo(
-    prompt("Código da venda para exclusão do carro:")
+  const pedidoParaExcluirCarro = buscarPedidoPorCodigo(
+    prompt("Código do pedido para exclusão do carro:")
   );
 
-  console.log(vendaParaExcluirCarro);
+  console.log(pedidoParaExcluirCarro);
 
-  vendaParaExcluirCarro.removeCarro(
+  pedidoParaExcluirCarro.removeCarro(
     prompt("Código do carro para exclusão:")
   );
 
-  exibirVendas();
+  exibirPedidos();
 }
 
-function alterarStatusVenda() {
-    const vendaParaAlterarStatus = buscarVendaPorCodigo(
-      prompt("Código da venda para alteração do status:")
+function alterarStatusPedido() {
+    const pedidoParaAlterarStatus = buscarPedidoPorCodigo(
+      prompt("Código do pedido para alteração do status:")
     );
 
-    console.log(vendaParaAlterarStatus);
+    console.log(pedidoParaAlterarStatus);
 
-    vendaParaAlterarStatus.alterarStatus(
+    pedidoParaAlterarStatus.alterarStatus(
       "Em Andamento");
 
-    exibirVendas();
+    exibirPedidos();
 }
 
-const calcularTotalizadores = (asVendas) => {
-    return asVendas.map(venda => {
+const calcularTotalizadores = (osPedidos) => {
+    return osPedidos.map(pedido => {
 
-        const qtdeCarros = venda.carros.length;
-        const valorTotal = venda.carros.reduce((total, carro) => total + carro.preco, 0);
+        const qtdeCarros = pedido.carros.length;
+        const valorTotal = pedido.carros.reduce((total, carro) => total + carro.preco, 0);
 
-        return {
-            codigoVenda: venda.codigo,
-            qtdeCarros,
-            valorTotal: valorTotal.toFixed(2)
+        // Formatando o valor total com Intl.NumberFormat
+    const valorTotalFormatado = new Intl.NumberFormat('pt-BR', {
+      style: 'currency',
+      currency: 'BRL',
+    }).format(valorTotal);
+
+    return {
+      codigoPedido: pedido.codigo,
+      qtdeCarros,
+      valorTotal: valorTotalFormatado,  
         };
     });
 }
 
 function exibirTotalizadores() {
 
-    const colecaoTotais = calcularTotalizadores(vendas);
+    const colecaoTotais = calcularTotalizadores(pedidos);
 
     console.log("Totalizadores: " + JSON.stringify(colecaoTotais, null, 2));
   
 }
 
-const obterVendasComCarros = (asVendas, qtde) => {
-    return asVendas.filter(venda => venda.carros.length >= qtde);
+const obterPedidosComCarros = (osPedidos, qtde) => {
+    return osPedidos.filter(pedido => pedido.carros.length >= qtde);
 }
 
 
 function exibirFiltro() {
-    const vendasComCarros = obterVendasComCarros(vendas, 2);
+    const pedidosComCarros = obterPedidosComCarros(pedidos, 2);
 
-    console.log("Filtro - Vendas com mais de 2 carros: " + JSON.stringify(vendasComCarros, null, 2));
+    console.log("Filtro - Pedidos 2 ou mais carros: " + JSON.stringify(pedidosComCarros, null, 2));
 
 }
 
-const existeVendaSemCarro = (asVendas) => {
-    return asVendas.some(venda => venda.carros.length === 0);
+const existePedidoSemCarro = (osPedidos) => {
+    return osPedidos.some(pedido => pedido.carros.length === 0);
 };
 
 function exibirInconsistencia() {
 
-    const temInconsistencia = existeVendaSemCarro(vendas);
+    const temInconsistencia = existePedidoSemCarro(pedidos);
 
-    console.log(temInconsistencia ? "Tem inconsistência" : "Não há inconsistência nas vendas");
+    console.log(temInconsistencia ? "Existem pedidos sem carros adicionados a ele" : "Não há inconsistência nos pedidos. Todos os pedidos possuem carros.");
 }
 
-coletarDadosVenda();
+alert("Bem Vindo ao sistema de pedidos de carros para concessionárias!\nAqui você consegue encomendar carros para vender na sua concessionária!");	
 
-alterarStatusVenda();
+coletarDadosPedido();
+
+alterarStatusPedido();
 
 excluirCarro();
 
