@@ -6,6 +6,13 @@
     "configurations": [
         {
             "type": "java",
+            "name": "primeiro_arquivo",
+            "request": "launch",
+            "mainClass": "primeiro_arquivo",
+            "projectName": "Javascript-Aulas-Estudos_b7db2370"
+        },
+        {
+            "type": "java",
             "name": "teste",
             "request": "launch",
             "mainClass": "teste",
